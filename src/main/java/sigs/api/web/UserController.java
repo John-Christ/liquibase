@@ -28,6 +28,7 @@ import sigs.api.repository.UserDao;
 import sigs.api.service.JwtUserDetailsService;
 
 
+@CrossOrigin()
 @Controller
 @RequestMapping("/")
 @RestController

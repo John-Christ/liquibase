@@ -1,6 +1,7 @@
 package sigs.api.config;
 
 
+import org.springframework.http.HttpMethod;
 import sigs.api.jwt.JwtAuthenticationEntryPoint;
 import sigs.api.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,7 +103,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
                 // Only for supreme admin
-                .antMatchers("/authenticate", "/register", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**" ).permitAll()
+                .antMatchers("/authenticate", "/register", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**" ).permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
+                .permitAll()
                 .antMatchers("/role-update/{id}", "/role-add", "/role-delete/{id}").hasRole("ADMIN")//.permitAll()
                 .antMatchers("/users", "/user/{id}").hasRole("ADMIN")//.permitAll()
                 .antMatchers("/permission-update/{id}", "/permission-add", "/permission-delete/{id}").hasRole("ADMIN")//.permitAll()
